@@ -1,13 +1,25 @@
 package cn.ibona.commonutil;
 
 
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Handler;
 import android.os.Looper;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.Array;
+import java.security.MessageDigest;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class D {
@@ -36,6 +48,7 @@ public class D {
     }
 
     ////////////// ////////////// //////////////  ////////////// ////////////// //////////////  ////////////// ////////////// ////////////// 吐司区域
+    //todo 吐司
     private static Toast mToast;
     /**
      * @param text
@@ -277,4 +290,237 @@ public class D {
     }
 
 
+    ////////////// ////////////// //////////////  ////////////// ////////////// //////////////  ////////////// ////////////// //////////////
+    //todo 像素 密度转化工具
+    /**
+     * 根据手机分辨率从px(像素)的单位转为dp(密度单位)
+     * @param context
+     * @param pxValue
+     * @return 返回密度单位
+     */
+    public static int px2dip(Context context,float pxValue){
+
+        final float scale =context.getResources().getDisplayMetrics().density;
+        return (int)(pxValue/scale + 0.5f);//这里返回值要4舍5入
+    }
+
+    /**
+     * 根据手机分辨率从dp的单位转化为px(像素)
+     * @param context
+     * @param dpValue
+     * @return px
+     */
+    public static int dip2px(Context context,float dpValue){
+
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int)(dpValue*scale+0.5f);//必须要进行4舍5入
+
+    }
+    ////////////// ////////////// //////////////  ////////////// ////////////// //////////////  ////////////// ////////////// //////////////
+
+//todo md5加密
+    /**
+     * md5加密
+     * @param string
+     * @return
+     * @throws Exception
+     */
+    public static   String encode(String string) throws Exception {
+        byte[] hash = MessageDigest.getInstance("MD5").digest(string.getBytes("UTF-8"));
+        StringBuilder hex = new StringBuilder(hash.length * 2);
+        for (byte b : hash) {
+            if ((b & 0xFF) < 0x10) {
+                hex.append("0");
+            }
+            hex.append(Integer.toHexString(b & 0xFF));
+        }
+        return hex.toString();
+    }
+
+    ////////////// ////////////// //////////////  ////////////// ////////////// //////////////  ////////////// ////////////// //////////////
+    //todo 网络监测工具类
+
+    /**
+     * 检测网络是否可用
+     * @return true 可用,false 不可用
+     */
+    public static boolean isOpenNetwork() {
+        ConnectivityManager connManager =(ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        if(connManager.getActiveNetworkInfo() != null) {
+            return connManager.getActiveNetworkInfo().isAvailable();
+        }
+        return false;
+    }
+
+    /**
+     * WIFI是否连接
+     */
+    public static boolean isWifiConnected(Context context) {
+        if (context != null) {
+            ConnectivityManager mConnectivityManager = (ConnectivityManager) context
+                    .getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo mWiFiNetworkInfo = mConnectivityManager
+                    .getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+            if (mWiFiNetworkInfo != null) {
+                return mWiFiNetworkInfo.isAvailable();
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 手机网络是否连接
+     */
+    public static boolean isMobileConnected(Context context) {
+        if (context != null) {
+            ConnectivityManager mConnectivityManager = (ConnectivityManager) context
+                    .getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo mMobileNetworkInfo = mConnectivityManager
+                    .getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+            if (mMobileNetworkInfo != null) {
+                return mMobileNetworkInfo.isAvailable();
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 当前网络类型
+     */
+    public static int getConnectedType(Context context) {
+        if (context != null) {
+            ConnectivityManager mConnectivityManager = (ConnectivityManager) context
+                    .getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo mNetworkInfo = mConnectivityManager.getActiveNetworkInfo();
+            if (mNetworkInfo != null && mNetworkInfo.isAvailable()) {
+                return mNetworkInfo.getType();
+            }
+        }
+        return -1;
+    }
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //todo double数据规范化
+    /**
+     * 2可以进行调整,规范到小数第几位
+     *
+     * 小数 四舍五入
+     * @param val
+     * @return
+     */
+    public static Double roundDouble(double val)
+    {
+        Double ret = null;
+        try
+        {
+            double factor = Math.pow(10, 2);
+            ret = Math.floor(val * factor + 0.5) / factor;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return ret;
+    }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //todo 字符流工具
+    /**
+     * 增加一个将流解析成字符串的方法
+     * @param is
+     * @return
+     * @throws IOException
+     */
+    public static String inputStream2String(InputStream is)   {
+
+        ByteArrayOutputStream baos=null;
+        try {
+            byte[] buffer = new byte[1024];
+
+            baos = new ByteArrayOutputStream();
+            int len = 0;
+            while(( len = is.read(buffer))!=-1){
+                baos.write(buffer, 0, len);
+            }
+
+            String result = baos.toString("utf-8");//utf-8
+            // System.out.println(baos.toString("utf-8"));
+
+            return result;
+
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }finally {
+
+            try {
+                if(is!=null)
+                {
+                    is.close();
+                    is=null;
+                }
+                if(baos!=null)
+                {
+                    baos.close();
+                    baos=null;
+                }
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+       return null;
+    }
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //todo GZIP压缩
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //todo notification
+    public static void  sendNotification(String title,String msg,int smallIcon,Bitmap largeIcon)
+    {
+        //发消息栏 通知
+       NotificationManager manager= (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
+
+        builder.setContentTitle(title)
+                .setContentText(msg )
+                .setSmallIcon(smallIcon);
+
+
+
+        if(largeIcon!=null)
+        {
+            builder.setLargeIcon(largeIcon);
+
+        }
+
+        Notification notification = builder.build();
+       // notification.flags=Notification.FLAG_NO_CLEAR;//这行代码让通知栏无法通过点击和侧拉消失掉
+        // notification.defaults=notification.DEFAULT_SOUND|notification.DEFAULT_VIBRATE;
+        /**
+         long[] vibrate = {0,100,200,300};
+         notification.vibrate = vibrate;
+         */
+
+        //  notification.defaults |= Notification.DEFAULT_LIGHTS;
+        manager.notify(1,notification);
+
+
+    }
+
+    /**
+     * 验证输入数字是否是
+     * @param str
+     * @return
+     */
+    protected static boolean match( String str) {
+        Pattern pattern = Pattern.compile("^[0-9]*$");
+        Matcher matcher = pattern.matcher(str);
+        return matcher.matches();
+    }
 }
