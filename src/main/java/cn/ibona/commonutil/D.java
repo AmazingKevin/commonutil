@@ -5,8 +5,6 @@ import android.app.Notification;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.v4.app.NotificationCompat;
@@ -25,7 +23,10 @@ import java.util.regex.Pattern;
 public class D {
 
     public static void init(Context context ) {
-         D.context = context;
+
+        D.context = context;
+        NetUtil.mContext=context;
+        AppUtil.mContext=context;
         mHander=new Handler();
 
     }
@@ -294,11 +295,10 @@ public class D {
     //todo 像素 密度转化工具
     /**
      * 根据手机分辨率从px(像素)的单位转为dp(密度单位)
-     * @param context
      * @param pxValue
      * @return 返回密度单位
      */
-    public static int px2dip(Context context,float pxValue){
+    public static int px2dip( float pxValue){
 
         final float scale =context.getResources().getDisplayMetrics().density;
         return (int)(pxValue/scale + 0.5f);//这里返回值要4舍5入
@@ -306,11 +306,10 @@ public class D {
 
     /**
      * 根据手机分辨率从dp的单位转化为px(像素)
-     * @param context
      * @param dpValue
      * @return px
      */
-    public static int dip2px(Context context,float dpValue){
+    public static int dip2px( float dpValue){
 
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int)(dpValue*scale+0.5f);//必须要进行4舍5入
@@ -335,68 +334,6 @@ public class D {
             hex.append(Integer.toHexString(b & 0xFF));
         }
         return hex.toString();
-    }
-
-    ////////////// ////////////// //////////////  ////////////// ////////////// //////////////  ////////////// ////////////// //////////////
-    //todo 网络监测工具类
-
-    /**
-     * 检测网络是否可用
-     * @return true 可用,false 不可用
-     */
-    public static boolean isOpenNetwork() {
-        ConnectivityManager connManager =(ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        if(connManager.getActiveNetworkInfo() != null) {
-            return connManager.getActiveNetworkInfo().isAvailable();
-        }
-        return false;
-    }
-
-    /**
-     * WIFI是否连接
-     */
-    public static boolean isWifiConnected(Context context) {
-        if (context != null) {
-            ConnectivityManager mConnectivityManager = (ConnectivityManager) context
-                    .getSystemService(Context.CONNECTIVITY_SERVICE);
-            NetworkInfo mWiFiNetworkInfo = mConnectivityManager
-                    .getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-            if (mWiFiNetworkInfo != null) {
-                return mWiFiNetworkInfo.isAvailable();
-            }
-        }
-        return false;
-    }
-
-    /**
-     * 手机网络是否连接
-     */
-    public static boolean isMobileConnected(Context context) {
-        if (context != null) {
-            ConnectivityManager mConnectivityManager = (ConnectivityManager) context
-                    .getSystemService(Context.CONNECTIVITY_SERVICE);
-            NetworkInfo mMobileNetworkInfo = mConnectivityManager
-                    .getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-            if (mMobileNetworkInfo != null) {
-                return mMobileNetworkInfo.isAvailable();
-            }
-        }
-        return false;
-    }
-
-    /**
-     * 当前网络类型
-     */
-    public static int getConnectedType(Context context) {
-        if (context != null) {
-            ConnectivityManager mConnectivityManager = (ConnectivityManager) context
-                    .getSystemService(Context.CONNECTIVITY_SERVICE);
-            NetworkInfo mNetworkInfo = mConnectivityManager.getActiveNetworkInfo();
-            if (mNetworkInfo != null && mNetworkInfo.isAvailable()) {
-                return mNetworkInfo.getType();
-            }
-        }
-        return -1;
     }
 
 
