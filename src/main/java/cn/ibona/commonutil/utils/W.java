@@ -1,4 +1,4 @@
-package cn.ibona.commonutil;
+package cn.ibona.commonutil.utils;
 
 
 import android.app.Notification;
@@ -16,15 +16,17 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Array;
 import java.security.MessageDigest;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-public class D {
+public class W {
 
     public static void init(Context context ) {
 
-        D.context = context;
+        W.context = context;
         NetUtil.mContext=context;
         AppUtil.mContext=context;
         mHander=new Handler();
@@ -361,6 +363,17 @@ public class D {
         return ret;
     }
 
+    /**
+     * 2可以进行调整,规范到小数第几位
+     *
+     * 小数 四舍五入
+     * @param f
+     * @return
+     */
+    public static String formatByFloat(double f) {
+        return new DecimalFormat(".00").format(f);
+    }
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //todo 字符流工具
     /**
@@ -460,4 +473,15 @@ public class D {
         Matcher matcher = pattern.matcher(str);
         return matcher.matches();
     }
+
+    /**
+     *时间相关
+     */
+    public static String getNowTime() {
+        SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        return sDateFormat.format(new java.util.Date());
+    }
+
+
+
 }

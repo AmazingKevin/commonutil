@@ -1,4 +1,4 @@
-package cn.ibona.commonutil;
+package cn.ibona.commonutil.utils;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
