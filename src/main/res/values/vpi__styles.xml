@@ -25,7 +25,7 @@
 
     <style name="Widget.TabPageIndicator" parent="Widget">
         <item name="android:gravity">center</item>
-        <item name="android:background">@drawable/vpi__dark_theme</item>
+        <item name="android:background">@color/vpi__background_holo_light</item>
         <item name="android:paddingLeft">5dip</item>
         <item name="android:paddingRight">5dip</item>
         <item name="android:paddingTop">6dp</item>
@@ -37,7 +37,7 @@
 
     <style name="TextAppearance.TabPageIndicator" parent="Widget">
         <item name="android:textStyle">bold</item>
-        <item name="android:textColor">@color/vpi__dark_theme</item>
+        <item name="android:textColor">@color/vpi__background_holo_dark</item>
     </style>
 
     <style name="Widget.IconPageIndicator" parent="Widget">
