@@ -10,7 +10,6 @@ import android.os.Looper;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.Toast;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,6 +20,8 @@ import java.text.SimpleDateFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import cn.ibona.commonutil.BaseSettings;
+
 
 public class W {
 
@@ -29,6 +30,7 @@ public class W {
         W.context = context;
         NetUtil.mContext=context;
         AppUtil.mContext=context;
+        BaseSettings.init(context);
         mHander=new Handler();
 
     }
