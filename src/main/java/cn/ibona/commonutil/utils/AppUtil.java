@@ -18,6 +18,7 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
+import android.telephony.SmsManager;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 import android.view.inputmethod.InputMethodManager;
@@ -463,4 +464,30 @@ public class AppUtil {
             return telephonyManager.getLine1Number();
         }
     }
+
+    /**
+     * 拨打电话后返回
+     *  <uses-permission android:name="android.permission.CALL_PHONE"/>
+     * @param phoneNumber
+     */
+    public static void callAndBack(String phoneNumber)
+    {
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_CALL);
+        intent.setData(Uri.parse("tel://" + phoneNumber));
+        mContext.startActivity(intent);
+
+    }
+
+    /**
+     * 发送短信
+     * @param phoneNumber 手机号码
+     * @param textContent 短信内容
+     */
+    public static void sendSms(String phoneNumber,String textContent)
+    {
+        SmsManager.getDefault().sendTextMessage(phoneNumber, null, textContent, null, null);
+    }
+
+
 }

@@ -10,6 +10,9 @@ import android.os.Looper;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.Toast;
+
+import com.android.volley.mytools.VolleyUtils;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -31,6 +34,7 @@ public class W {
         NetUtil.mContext=context;
         AppUtil.mContext=context;
         BaseSettings.init(context);
+        VolleyUtils.initVolley(context);
         mHander=new Handler();
 
     }
