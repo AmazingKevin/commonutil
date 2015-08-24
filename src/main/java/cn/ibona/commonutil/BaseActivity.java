@@ -13,8 +13,6 @@ import android.support.v4.app.FragmentActivity;
 
 /**
  * 基础activity， 所有的Activity都要继承自这个基类
- * 
- * @author 吴志群
  */
 public abstract class BaseActivity extends FragmentActivity {
 
