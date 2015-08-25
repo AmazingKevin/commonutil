@@ -45,6 +45,7 @@ public class AbActivityManager {
 	}
 
 	/**
+	 * todo 代码有问题
 	 * 遍历所有Activity并finish.
 	 */
 	public void clearAllActivity() {

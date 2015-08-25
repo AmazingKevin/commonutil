@@ -11,19 +11,17 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.android.volley.mytools.VolleyUtils;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Array;
-import java.security.MessageDigest;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import cn.ibona.commonutil.BaseSettings;
+import cn.ibona.commonutil.volley.VolleyUtils;
 
 
 public class W {
@@ -33,6 +31,8 @@ public class W {
         W.context = context;
         NetUtil.mContext=context;
         AppUtil.mContext=context;
+        FileUtil.mContext=context;
+
         BaseSettings.init(context);
         VolleyUtils.initVolley(context);
         mHander=new Handler();
@@ -322,26 +322,6 @@ public class W {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int)(dpValue*scale+0.5f);//必须要进行4舍5入
 
-    }
-    ////////////// ////////////// //////////////  ////////////// ////////////// //////////////  ////////////// ////////////// //////////////
-
-//todo md5加密
-    /**
-     * md5加密
-     * @param string
-     * @return
-     * @throws Exception
-     */
-    public static   String encode(String string) throws Exception {
-        byte[] hash = MessageDigest.getInstance("MD5").digest(string.getBytes("UTF-8"));
-        StringBuilder hex = new StringBuilder(hash.length * 2);
-        for (byte b : hash) {
-            if ((b & 0xFF) < 0x10) {
-                hex.append("0");
-            }
-            hex.append(Integer.toHexString(b & 0xFF));
-        }
-        return hex.toString();
     }
 
 
