@@ -153,13 +153,14 @@ public class VolleyUtils
 	 * @param wid (宽度 单位是dp)
 	 * @param height (高度 单位是dp)
 	 */
-	public  void simpleGet4Image(final ImageView iv,final  String url,final   int errorImg,final int wid, final int height)
+	public  void simpleGet4Image(final int position,final ImageView iv,final  String url,final   int errorImg,final int wid, final int height)
 	{
 
-		W.w(tag, "url:" + url);
+
 		//乱闪,放入内
 
 		iv.setImageResource(errorImg);
+
 
 		Bitmap bitmap=null;
 		//假如内存中存在 直接加载内存中的数据
@@ -169,6 +170,7 @@ public class VolleyUtils
 		{
 			W.w(tag, "有内存:" + bitmap);
 			//空的 设定tag,表示已经加载过数据
+			W.w(tag, "url:" + url+"position:"+position);
 			iv.setImageBitmap(bitmap);
 			return;
 		}
@@ -178,9 +180,14 @@ public class VolleyUtils
 		bitmap=FileUtil.getBitmapFromLocalCache(url);
 		if(bitmap!=null)
 		{
-			W.w(tag,"从硬盘缓存中获取到了数据");
+			W.w(tag, "从硬盘缓存中获取到了数据");
 			mLocalCache.put(url, bitmap);
+
+			int tag = (int) iv.getTag();
+
+			if(tag==position)
 			iv.setImageBitmap(bitmap);
+
 			return;
 		}
 
@@ -192,12 +199,13 @@ public class VolleyUtils
 
 				//内存
 				mLocalCache.put(url, response);
-
 				//硬盘
 				FileUtil.putBitmap2LocalCache(response,url);
 
+				iv.setTag(""+position);
+
 				//递归
-				simpleGet4Image(iv, url, errorImg, wid, height);
+				simpleGet4Image(position,iv, url, errorImg, wid, height);
 
 
 			}
@@ -210,6 +218,8 @@ public class VolleyUtils
 			}
 		});
 
+		//imageRequest.setRetryPolicy(new DefaultRetryPolicy(30000, 1, 1));
+	/*	imageRequest.setTag(""+position);*/
 	    queues.add(imageRequest);
 
 	}
