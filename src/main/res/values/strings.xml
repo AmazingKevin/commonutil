@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">moduleCommon</string>
+    <string name="positive">确定</string>
+    <string name="negative">取消</string>
+    <string name="cantconnect">无法连接服务器</string>
+    <string name="not_commit">未提交</string>
+    <string name="ratio">%</string>
+    <string name="connecting_server">正在连接服务器</string>
+    <string name="cant_connect_network">无法链接网络</string>
+    <string name="back">回退</string>
+    <string name="save">保存</string>
+    <string name="commit">提交</string>
+    <string name="about">关于</string>
+    <string name="cancel">取消</string>
+    <string name="user_detail">用户详情</string>
+    <string name="warming">警告</string>
+    <string name="close">关闭</string>
+    <string name="takephoto">拍照</string>
+    <string name="modify">修改</string>
+    <string name="cant_connect_network_check">网络不可用,请检测网络</string>
+    <string name="caution_tip">小小提示!</string>
+    <string name="person_center">个人中心</string>
 </resources>

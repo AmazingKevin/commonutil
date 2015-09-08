@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<color name="bg_color">#f3f3f3</color>
+	<color name="transparent">#00000000</color>
+	<color name="white">#FFFFFF</color>
+    <color name="grey">#999999</color>
+	<color name="blue">#0066FF</color>
+	<color name="blue_version">#3babdf</color>
+	<color name="light_blue_version">#aa3babdf</color>
+	<color name="green">#22c064</color>
+	<color name="common_text_c">#53D29D</color>
+	<color name="wel_green">#22BF64</color>
+	<color name="orange">#f09f17</color>
+	<color name="gray">#dddfdf</color>
+	<color name="gray_bg">#F1F1F1</color>
+	<color name="red">#BB2416</color>
+	<color name="light_red">#88FF6666</color>
+	<color name="item_gray">#E0E0E0</color>
+	<color name="dow">#99DADAD9</color>
+
+	<color name="bg_color_deep">#E5E5E5</color>
+	<color name="black">#000000</color>
+	<color name="black_half">#50000000</color>
+	<color name="black_sub">#181818</color>
+	<color name="text_color">#1b1b1b</color>
+	<color name="text_grey">#B2B2B2</color>
+	<color name="details_color">#626161</color>
+	<color name="left_menu_text_black">#72777f</color>
+	<color name="half">#DCDCDC</color>
+	<color name="main_green1">#56b7a4</color>
+	<color name="main_green2">#70ae01</color>
+	<color name="main_blue1">#22aaff</color>
+	<color name="main_blue2">#5a5eeb</color>
+	<color name="main_yellow">#f29f05</color>
+	<color name="main_red1">#ff6b50</color>
+	<color name="main_red2">#fa528a</color>
+
+	<color name="home_itemOne">#FDA635</color>
+	<color name="home_itemTwo">#71befc</color>
+	<color name="home_itemFour">#798ef6</color>
+	<color name="home_itemThree">#EB91AB</color>
+	<color name="home_itemFive">#A8B951</color>
+	<color name="home_itemSix">#A8B951</color>
+	<color name="home_itemSeven">#9C9D05</color>
+	<color name="home_itemEight">#cca426</color>
+
+
+	<color name="view_load_more_bg">#F1F1F1</color>
+	<color name="view_refresh_item_bg">#3C3B37</color>
+
+	<!--底部菜单选中背景变色-->
+	<color name="bottom_background">#F6F5F2</color>
+	<color name="bottom_checked_background">#006756</color>
+
+	<!-- 扫描控件使用颜色 -->
+	<color name="possible_result_points">#c0ffff00</color>
+	<color name="result_view">#b0000000</color>
+	<color name="viewfinder_frame">#ff000000</color>
+	<color name="viewfinder_laser">#ffff0000</color>
+	<color name="viewfinder_mask">#60000000</color>
+	<!--订单详情-->
+	<color name="all_bg">#EAEAEA</color>
+	<color name="title_bg">#CCCCCC</color>
+	<color name="line_bg">#797979</color>
+    <color name="color_line">#F1F1F1</color>
+    <color name="text_color1">#999999</color>
+</resources>

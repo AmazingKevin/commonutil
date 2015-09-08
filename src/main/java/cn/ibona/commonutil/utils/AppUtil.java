@@ -245,14 +245,11 @@ public class AppUtil {
      * 描述：关闭键盘事件.
      *            the context
      */
-    public static void closeSoftInput( ) {
+    public static void closeSoftInput(Activity activity ) {
         InputMethodManager inputMethodManager = (InputMethodManager) mContext
                 .getSystemService(Context.INPUT_METHOD_SERVICE);
-        if (inputMethodManager != null
-                && ((Activity) mContext).getCurrentFocus() != null) {
-            inputMethodManager.hideSoftInputFromWindow(((Activity) mContext)
-                            .getCurrentFocus().getWindowToken(),
-                    InputMethodManager.HIDE_NOT_ALWAYS);
+        if (inputMethodManager != null  &&  activity.getCurrentFocus() != null) {
+            inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
         }
     }
 

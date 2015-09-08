@@ -15,8 +15,7 @@
 -->
 
 <resources>
-    <color name="blue">#aa3babdf</color>
-    <color name="white">#ffffff</color>
+
 
     <color name="vpi__background_holo_dark">#ff000000</color>
     <color name="vpi__background_holo_light">#fff3f3f3</color>

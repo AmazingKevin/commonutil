@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!-- rect item   -->
+	<dimen name="rect_item_height">50dip</dimen>
+	<dimen name="rect_item_width">50dip</dimen>
+
+	<!-- item hight -->
+	<dimen name="item_height">160dp</dimen>
+	<dimen name="item_width">90dip</dimen>
+
+	<!-- padding size -->
+	<dimen name="padding_small">2dp</dimen>
+	<dimen name="padding_normal">5dp</dimen>
+	<dimen name="padding_large">10dp</dimen>
+	<dimen name="padding_huge">15dp</dimen>
+
+	<!-- margin size -->
+	<dimen name="margin_larger">10dp</dimen>
+	<dimen name="margin_huge">10dp</dimen>
+	<dimen name="margin_small">2dp</dimen>
+	<dimen name="margin_normal">5dp</dimen>
+
+
+	<!-- text size -->
+	<dimen name="text_size_title">20sp</dimen>
+	<dimen name="text_size_normal">15sp</dimen>
+	<dimen name="text_size_small">12sp</dimen>
+
+
+
+</resources>
